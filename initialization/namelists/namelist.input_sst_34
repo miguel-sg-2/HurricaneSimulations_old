@@ -1,0 +1,161 @@
+ &time_control
+ run_days                            = 15,
+ run_hours                           = 0,
+ run_minutes                         = 0,
+ run_seconds                         = 0,
+ start_year                          = 2000, 2000, 2000, 2000, 2000, 2000,
+ start_month                         = 01,   01,   01,   01,   01,   01, 
+ start_day                           = 01,   01,   05,   07,   07,   07, ! 01,01,05,07,07,07
+ start_hour                          = 00,   00,   00,   18,   20,   00, ! 00,00,00,18,05,00
+ start_minute                        = 00,   01,   01,   00,   01,   00, ! 00,01,01,01,01,00
+ start_second                        = 30,   00,   00,   00,   00,   00, ! 30,00,00,00,00,00
+ end_year                            = 2000, 2000, 2000, 2000, 2000, 2000,
+ end_month                           = 01,   01,   01,   01,   01,   01,
+ end_day                             = 13,   13,   13,   13,   13,    8,
+ end_hour                            = 0,    0,    0,    0,    0,    0,
+ end_minute                          = 00,   00,   00,   00,   00,   00, 
+ end_second                          = 00,   00,   00,   00,   00,   00,
+ history_interval_s                  = 21600, 10800, 7200, 3600, 1800, 1800,
+ frames_per_outfile                  = 1,    1,    1, 1,1,1
+ restart                             = .true.,
+ restart_interval_m                  = 60,           ! CHANGE THIS IN REAL SIMULATIONS TO -> 10
+ io_form_history                     = 2
+ io_form_restart                     = 2
+ io_form_input                       = 2
+ io_form_boundary                    = 2
+ iofields_filename                   = "io_nest","io_nest","io_nest","io_nest","io_nest","io_nest",
+ ignore_iofields_warning             = .true.,
+ auxhist24_outname                   = "auxHist24_d<domain>_<date>"
+ auxhist24_interval_s                = 3600, 3600,  1800, 600,120,600,     ! CHANGE THIS IN REAL SIMULATIONS TO -> 600, 300, 10
+ frames_per_auxhist24                = 1,    1,    1,1,1,1,
+ io_form_auxhist24                   = 2
+ override_restart_timers             = .true.,
+ write_hist_at_0h_rst                = .true.,
+ /
+
+ &domains
+ interp_method_type = 1,
+ nproc_x                             = 22, !22, !40,
+ nproc_y                             = 22, !22, !30,
+ time_step                           = 10,
+ time_step_fract_num                 = 0,
+ time_step_fract_den                 = 1,
+ max_dom                             = 5,         !!!!!!!!!!!!!!!!!!!!!!!!! MODIFY NUMBER OF DOMAINS
+ s_we                                = 1,   1,   1,   1,   1,   1,
+ e_we                                = 301, 322, 322, 865, 1603, 967,
+ s_sn                                = 1,   1,   1,   1,   1,   1,
+ e_sn                                = 301, 322, 322, 865, 1603, 967,
+ s_vert                              = 1,   1,   1,   1,   1,   1,
+ e_vert                              = 109, 109, 109, 109, 109, 109, ! 87,  87,  87,  87,  87,  87,
+! eta_levels                          = 1.0000, 0.9929, 0.9856, 0.9784, 0.9713, 0.9642, 0.9571, 0.9501, 0.9432, 0.9363,
+!                                       0.9295, 0.9227, 0.9159, 0.9093, 0.9026, 0.8960, 0.8895, 0.8830, 0.8765, 0.8701,
+!                                       0.8638, 0.8574, 0.8512, 0.8450, 0.8388, 0.8326, 0.8266, 0.8205, 0.8145, 0.8086,
+!                                       0.8026, 0.7968, 0.7910,                                                        
+!                                       0.7840, 0.7760, 0.7670, 0.7570, 0.7460, 0.7335, 0.7195, 0.7035, 0.6860, 0.6670, 
+!                                       0.6470, 0.6260, 0.6040, 0.5810, 0.5570, 0.5320, 0.5060, 0.4790,                
+!                                       0.4500, 0.4200, 0.3910, 0.3620, 0.3360, 0.3130, 0.2910, 0.2670, 0.2470, 0.2270,
+!                                       0.2080, 0.1900, 0.1730, 0.1570, 0.1420, 0.1290, 0.1160, 0.1040, 0.0930, 0.0835,
+!                                       0.0760, 0.0680, 0.0600, 0.0530, 0.0460, 0.0400, 0.0350, 0.0300, 0.0255, 0.0210,
+!                                       0.0170, 0.0130, 0.0090, 0.0060, 0.0030, 0.0000,
+ eta_levels                   =  1.0       , 0.9975481 , 0.99497967, 0.99228947, 0.9894721 ,0.98652191, 0.98343307, 0.98019953, 0.97681502, 0.97327304, 0.96956688, 0.96568961, 0.96163408, 0.95739289, 0.95295845, 0.94832292, 0.94347828, 0.93841625, 0.93312838, 0.92760603,0.92184034, 0.9158223 , 0.90954274, 0.90314438, 0.89678789,0.89047302, 0.88419948, 0.877967  , 0.87177533, 0.86562419,0.85951331, 0.85344243, 0.84741129, 0.84141964, 0.8354672 ,0.82955373, 0.82367896, 0.81784266, 0.81204456, 0.80628441,0.80056197, 0.79487698, 0.78922921, 0.78101263, 0.77206532,0.76233217, 0.75175591, 0.74027758, 0.72783698, 0.71437338,0.69982639, 0.68413694, 0.66724862, 0.64910917, 0.62967231,0.60889977, 0.5867637 , 0.56324932, 0.53835782, 0.51238621,0.4875272 , 0.46373311, 0.44095832, 0.41915918, 0.39829388,0.37832243, 0.35920652, 0.34090951, 0.32339633, 0.30663338,0.29058853, 0.27523103, 0.26053142, 0.24646152, 0.23299436,0.22010411, 0.20776606, 0.19595656, 0.18465296, 0.17383359,0.16347771, 0.15356546, 0.14407784, 0.13499665, 0.12630449,0.11798469, 0.1100213 , 0.10239905, 0.09510333, 0.08812014,0.08143611, 0.07503841, 0.06891478, 0.06305348, 0.05744327,0.05207339, 0.04693355, 0.04201389, 0.03730499, 0.03279781,0.02848371, 0.02435442, 0.02040202, 0.01661894, 0.01299792,0.00953202, 0.0062146 , 0.00303929, 0.0,
+
+ dx                                  = 13500, 4500, 1500, 166.667, 55.5556,
+ dy                                  = 13500, 4500, 1500, 166.667, 55.5556,
+ grid_id                             = 1, 2, 3, 4, 5, 6,
+ parent_id                           = 0, 1, 2, 3, 4, 5,
+ i_parent_start                      = 1, 100, 100, 81, 182, 138,
+ j_parent_start                      = 1, 100, 87,  69, 174, 138,
+ parent_grid_ratio                   = 1, 3,  3,  9,  3,
+ parent_time_step_ratio              = 1, 3,  3, 11,  3,
+ feedback                            = 1,
+ ztop                                = 25000.,
+ max_ts_level              =     13,
+ max_ts_locs               =     179,
+ /
+
+ &physics
+ mp_physics                          = 6, 6, 6, 6, 6, 6,
+ ra_lw_physics                       = 0, 0, 0, 0, 0, 0,
+ ra_sw_physics                       = 0, 0, 0, 0, 0, 0,
+ radt                                = 5, 5, 5, 5, 5, 5,
+ sf_sfclay_physics                   = 1, 1, 1, 1, 1, 1,
+ sf_surface_physics                  = 1, 1, 1, 1, 1, 1,
+ bl_pbl_physics                      = 1, 1, 1, 0, 0, 0,
+ bldt                                = 0, 0, 0, 0, 0, 0,
+ cu_physics                          = 0, 0, 0, 0, 0, 0,
+ cudt                                = 0,
+ isfflx                              = 1,           ! == 1 TO SPECIFY COOLING RATE 
+ isftcflx                            = 1,
+ /
+
+ &fdda
+ /
+
+ &dynamics
+ hybrid_opt                          = 0,
+ rk_ord                              = 3,
+ diff_opt                            = 2, 2, 2, 2, 2, 2,
+ km_opt                              = 4, 4, 4, 2, 2, 2,
+ sfs_opt                             = 0, 0, 0, 2, 2,
+ damp_opt                            = 2,
+ dampcoef                            = .003, .003, .003, .003, .003, .003,
+ zdamp                               = 5000., 5000., 5000., 5000., 5000., 5000.,
+ w_damping                           = 1,
+ rad_nudge                           = 1,
+ khdif                               = 300, 300, 300, 300, 300, 300,
+ kvdif                               = 1, 1, 1, 1, 1, 1,
+ smdiv                               = 0.1, 0.1, 0.1, 0.1, 0.1, 0.1,
+ emdiv                               = 0.01, 0.01, 0.01, 0.01, 0.01, 0.01,
+ epssm                               = 0.1, 0.1, 0.1, 0.1, 0.1, 0.1,
+ time_step_sound                     = 6, 6, 6, 6, 6, 6,
+ h_mom_adv_order                     = 5, 5, 5, 5, 5, 5,
+ v_mom_adv_order                     = 3, 3, 3, 3, 3, 3,
+ h_sca_adv_order                     = 5, 5, 5, 5, 5, 5,
+ v_sca_adv_order                     = 3, 3, 3, 3, 3, 3,
+ mix_full_fields                     = .true., .true., .true., .true., .true., .true.,
+ non_hydrostatic                     = .true., .true., .true., .true., .true., .true.,
+
+!! Surface layer !!
+ spec_init_perts                     = .false.,
+ spec_ideal                          = 1,       ! 1 == idealized surface layer is ON
+ spec_hfx                            = 0,
+ spec_sf_heatrate                    = 0.0, !-0.2,
+ spec_lat                            = 20,
+!!!!!!!!!!!!!!!!!!!
+
+!! Nudge center tile !!
+ nudge_opt_msg = 0,0,0,11,0,
+ ndg_dt = 170, ! was 10
+! loc_xx = 1,1,1,395,1
+! loc_yy = 1,1,1,401,1
+!!!!!!!!!!!!!!!!!!!!!!!
+
+ /
+
+ &bdy_control
+ periodic_x                          = .true., .false.,.false.,.false.,.false.,.false.,
+ symmetric_xs                        = .false.,.false.,.false.,.false.,.false.,.false.,
+ symmetric_xe                        = .false.,.false.,.false.,.false.,.false.,.false.,
+ open_xs                             = .false.,.false.,.false.,.false.,.false.,.false.,
+ open_xe                             = .false.,.false.,.false.,.false.,.false.,.false.,
+ periodic_y                          = .true., .false.,.false.,.false.,.false.,.false.,
+ symmetric_ys                        = .false.,.false.,.false.,.false.,.false.,.false.,
+ symmetric_ye                        = .false.,.false.,.false.,.false.,.false.,.false.,
+ open_ys                             = .false.,.false.,.false.,.false.,.false.,.false.,
+ open_ye                             = .false.,.false.,.false.,.false.,.false.,.false.,
+ nested                              = .false.,.true.,.true.,.true.,.true.,.true.,
+ /
+
+
+ &grib2
+ /
+
+ &namelist_quilt
+ nio_tasks_per_group = 0,
+ nio_groups = 1,
+ /
+
+ &ideal
+ ideal_case = 9
+ /
+
